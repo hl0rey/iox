@@ -16,6 +16,8 @@ builds:
   goarch:
   - amd64
   - 386
+  flags:
+  - -trimpath
 archives:
 - replacements:
     darwin: Darwin
