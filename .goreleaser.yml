@@ -19,7 +19,6 @@ builds:
   gcflags:
   - all=-trimpath={{.Env.GOPATH}}
   asmflags:
-  - -D mysymbol
   - all=-trimpath={{.Env.GOPATH}}
 archives:
 - replacements:
