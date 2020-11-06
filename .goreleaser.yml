@@ -18,9 +18,9 @@ builds:
   - 386
   gcflags:
   - -D mysymbol
-  - all=-trimpath="G:/code/gocode/" 
+  - -trimpath="G:/code/gocode/" 
   asmflags:
-  - all=-trimpath="G:/code/gocode/"
+  - -trimpath="G:/code/gocode/"
   - ./dontoptimizeme=-N
 archives:
 - replacements:
