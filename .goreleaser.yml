@@ -16,12 +16,6 @@ builds:
   goarch:
   - amd64
   - 386
-  gcflags:
-  - -D mysymbol
-  - -trimpath=G:/code/gocode/
-  asmflags:
-  - -trimpath=G:/code/gocode/
-  - ./dontoptimizeme=-N
 archives:
 - replacements:
     darwin: Darwin
