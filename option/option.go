@@ -27,4 +27,11 @@ var (
 
 	// logic optimization, changed in v0.1.1
 	FORWARD_WITHOUT_DEC = false
+
+	// automatic reconnection
+	DEAMON = false
+	RETRY  = 5000 //5s
+
+	//quiet mode
+	QUIET = false
 )

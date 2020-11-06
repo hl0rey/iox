@@ -2,13 +2,17 @@ package main
 
 import (
 	"fmt"
+	"iox/logger"
 	"iox/operate"
 	"iox/option"
+	"math/rand"
 	"os"
+	"time"
 )
 
 const VERSION = "0.4"
 
+//It is simple enough to use without printing help messages
 func Usage() {
 	fmt.Printf(
 		"iox v%v\n"+
@@ -27,6 +31,10 @@ func Usage() {
 			"      set connection timeout(millisecond), default is 5000\n"+
 			"  -v\n"+
 			"      enable log output\n"+
+			"  -d\n"+
+			"      automatically reconnect within a five minutes(jittery), default is 5000 ms\n"+
+			"  -q\n"+
+			"      quiet mode,no output\n"+
 			"  -h\n"+
 			"      print usage then exit\n", VERSION,
 	)
@@ -43,6 +51,7 @@ func main() {
 		return
 	}
 
+	rand.Seed(time.Now().UnixNano())
 	switch mode {
 	case "fwd":
 		switch submode {
@@ -54,13 +63,24 @@ func main() {
 			operate.Remote2Remote(remote[0], remote[1], renc[0], renc[1])
 		}
 	case "proxy":
-		switch submode {
-		case option.SUBMODE_LP:
-			operate.ProxyLocal(local[0], lenc[0])
-		case option.SUBMODE_RP:
-			operate.ProxyRemote(remote[0], renc[0])
-		case option.SUBMODE_RPL2L:
-			operate.ProxyRemoteL2L(local[0], local[1], lenc[0], lenc[1])
+		for {
+
+			switch submode {
+			case option.SUBMODE_LP:
+				operate.ProxyLocal(local[0], lenc[0])
+			case option.SUBMODE_RP:
+				operate.ProxyRemote(remote[0], renc[0])
+			case option.SUBMODE_RPL2L:
+				operate.ProxyRemoteL2L(local[0], local[1], lenc[0], lenc[1])
+			}
+			logger.Warn("The SOCKS connection has been disconnected")
+			if option.DEAMON == false {
+				logger.Warn("Client exits without reconnection")
+				break
+			}
+			//Reconnect with jitter
+			time.Sleep(time.Duration(option.RETRY/10*rand.Intn(11)) * time.Millisecond)
 		}
+
 	}
 }

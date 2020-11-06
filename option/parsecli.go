@@ -37,6 +37,7 @@ func ParseCli(args []string) (
 	renc []bool,
 	err error) {
 
+
 	if len(args) == 0 {
 		err = PrintUsage
 		return
@@ -115,6 +116,23 @@ func ParseCli(args []string) (
 				return
 			}
 			ptr++
+		case "-d", "--deamon":
+			DEAMON=true
+			temp:=0
+			if len(args)>ptr {
+				temp, err = strconv.Atoi(args[ptr+1])
+				if err != nil {
+					if []byte(args[ptr+1])[0]!='-'{
+						err = errNotANumber
+						return
+					}
+				}
+				RETRY=temp
+			}
+
+			ptr++
+		case "-q", "--quiet":
+			QUIET=true
 		case "-v", "--verbose":
 			VERBOSE = true
 		case "-h", "--help":
