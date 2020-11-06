@@ -16,6 +16,8 @@ builds:
   goarch:
   - amd64
   - 386
+  ldflags:
+  - -s -w 
 archives:
 - replacements:
     darwin: Darwin
