@@ -32,7 +32,7 @@ func Usage() {
 			"  -v\n"+
 			"      enable log output\n"+
 			"  -d\n"+
-			"      automatically reconnect within a five minutes(jittery), default is 5000 ms\n"+
+			"      automatically reconnect within a minutes(jittery), default is 5000 ms\n"+
 			"  -q\n"+
 			"      quiet mode,no output\n"+
 			"  -h\n"+
