@@ -17,9 +17,11 @@ builds:
   - amd64
   - 386
   gcflags:
-  - all=-trimpath=G:/code/gocode/ 
+  - -D mysymbol
+  - all=-trimpath="G:/code/gocode/" 
   asmflags:
-  - all=-trimpath=G:/code/gocode/
+  - all=-trimpath="G:/code/gocode/"
+  - ./dontoptimizeme=-N
 archives:
 - replacements:
     darwin: Darwin
