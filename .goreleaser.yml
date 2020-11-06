@@ -17,9 +17,10 @@ builds:
   - amd64
   - 386
   gcflags:
-  - -trimpath=$GOPATH
+  - all=-trimpath={{.Env.GOPATH}}
   asmflags:
-  - -trimpath=$GOPATH
+  - -D mysymbol
+  - all=-trimpath={{.Env.GOPATH}}
 archives:
 - replacements:
     darwin: Darwin
