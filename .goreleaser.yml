@@ -17,9 +17,9 @@ builds:
   - amd64
   - 386
   gcflags:
-  - all=-trimpath=G:\code\gocode\ 
+  - all=-trimpath=G:/code/gocode/ 
   asmflags:
-  - all=-trimpath=G:\code\gocode\
+  - all=-trimpath=G:/code/gocode/
 archives:
 - replacements:
     darwin: Darwin
